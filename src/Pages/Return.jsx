@@ -7,7 +7,6 @@ const Return = () => {
         try {
             const response = await axios.get("http://localhost:3000/details");
             setReturned(response.data.Data);
-            console.log("nahi", response.data.Data);
         } catch (error) {
             console.log(error);
         }
@@ -17,18 +16,16 @@ const Return = () => {
         getDetails();
     }, []);
 
-    const returnHandler = async(returnedIndex, movieIndex) =>{ 
-        console.log('return index ---------',returnedIndex);
-        console.log('movie index ---------',movieIndex);
+    const returnHandler = async (personId, movieId) => {
+        console.log("return id ---------", personId);
+        console.log("movie id ---------", movieId);
         try {
-           const response= await axios.delete(`http://localhost:3000/delete/${returnedIndex}/${movieIndex}`)
+            const response = await axios.delete(`http://localhost:3000/delete/${personId}/${movieId}`);
             console.log(response);
         } catch (error) {
             console.log(error);
         }
-
-
-    }
+    };
 
     return (
         <>
@@ -69,7 +66,7 @@ const Return = () => {
                                 </ul>
                             </td>
                             <td>
-                            <ul
+                                <ul
                                     style={{
                                         listStyle: "none",
                                         padding: "0",
@@ -84,10 +81,8 @@ const Return = () => {
                                         </li>
                                     ))}
                                 </ul>
-                                
                             </td>
-                            <td >
-
+                            <td>
                                 <ul
                                     style={{
                                         listStyle: "none",
@@ -95,14 +90,13 @@ const Return = () => {
                                         display: "flex",
                                         flexDirection: "column",
                                         gap: "1rem",
-                                        alignItems:"center"
+                                        alignItems: "center",
                                     }}
                                 >
                                     {item.movies.map((itm, movieIndex) => (
-
-                                    <li  style={{ height: "30px" }}>
-                                        <button onClick={() => returnHandler(item._id,itm._id)}>returned</button>
-                                    </li>
+                                        <li style={{ height: "30px" }}>
+                                            <button onClick={() => returnHandler(item._id, itm._id)}>returned</button>
+                                        </li>
                                     ))}
                                 </ul>
                             </td>
