@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Return = () => {
+    const [returned, setReturned] = useState([]);
     const getDetails = async () => {
         try {
             const response = await axios.get("http://localhost:3000/details");
-            console.log(response.data.Data);
-        } catch (error) {}
+            setReturned(response.data.Data);
+            console.log("nahi", response.data.Data);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
         getDetails();
     }, []);
+
+    const returnHandler = () =>{   
+
+    }
 
     return (
         <>
@@ -28,132 +36,70 @@ const Return = () => {
                         <th scope="col">Total Charge</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td style={{ padding: "0" }}>
+                    {returned.map((item, index) => (
+                        <tr key={index}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{item.name}</td>
+                            <td>
+                                <ul
+                                    style={{
+                                        listStyle: "none",
+                                        padding: "0",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "1rem",
+                                    }}
+                                >
+                                    {item.movies.map((movies, movieIndex) => (
+                                        <li key={movieIndex} style={{ border: "1px solid black", height: "30px" }}>
+                                            {movies.movieName}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </td>
+                            <td>
                             <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                            </ul>
-                        </td>
-                        <td style={{ padding: "0" }}>
-                            <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                            </ul>
-                        </td>
+                                    style={{
+                                        listStyle: "none",
+                                        padding: "0",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "1rem",
+                                    }}
+                                >
+                                    {item.movies.map((noOfDays, movieIndex) => (
+                                        <li key={movieIndex} style={{ border: "1px solid black", height: "30px" }}>
+                                            {noOfDays.noOfDays}
+                                        </li>
+                                    ))}
+                                </ul>
+                                
+                            </td>
+                            <td >
 
-                        <td style={{ padding: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>Mark</td>
-                    </tr>
+                                <ul
+                                    style={{
+                                        listStyle: "none",
+                                        padding: "0",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "1rem",
+                                        alignItems:"center"
+                                    }}
+                                >
+                                    {item.movies.map(() => (
 
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td style={{ padding: "0" }}>
-                            <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                            </ul>
-                        </td>
-                        <td style={{ padding: "0" }}>
-                            <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>d</li>
-                            </ul>
-                        </td>
-
-                        <td style={{ padding: "0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <ul
-                                style={{
-                                    listStyle: "none",
-                                    padding: "0",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                }}
-                            >
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                                <li style={{ border: "1px solid black", height: "30px" }}>
-                                    <button>returned</button>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>Mark</td>
-                    </tr>
+                                    <li  style={{ height: "30px" }}>
+                                        <button onClick={returnHandler}>returned</button>
+                                    </li>
+                                    ))}
+                                </ul>
+                            </td>
+                            <td>{item.totalAmount}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>
