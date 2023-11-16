@@ -97,7 +97,7 @@ export const Login = () => {
                     >
                         Already have an account ? Signup
                     </Nav.Link>
-                    <div style={{display:'flex', alignItems:'center', gap:"1rem"}}>
+                    <div style={{display:'flex', alignItems:'center', gap:"1rem", flexDirection:"column", gap:"1rem", margin:"1rem"}}>
 
                     <Button  variant="success" type="submit" 
             onClick={handleGoogleLogin}
@@ -105,7 +105,9 @@ export const Login = () => {
             Login
           </Button>
                     <GoogleButton 
-                    style={{padding:'0 1rem', borderRadius:'20px'}}
+                    label="sign in with google"
+                    type="light"
+                    // style={{padding:'0 1rem', borderRadius:'20px'}}
                     
                     onClick={handleGoogleLogin} />
                     </div>

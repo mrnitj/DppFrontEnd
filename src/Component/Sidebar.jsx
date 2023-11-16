@@ -36,8 +36,7 @@ const Sidebar = () => {
             </div>
         </div>
         <div class="col py-3">
-            <h1>DELIVERY DETAILS</h1>
-            <hr />
+            
            {children}
         </div>
     </div>
