@@ -17,7 +17,16 @@ const Return = () => {
         getDetails();
     }, []);
 
-    const returnHandler = () =>{   
+    const returnHandler = async(returnedIndex, movieIndex) =>{ 
+        console.log('return index ---------',returnedIndex);
+        console.log('movie index ---------',movieIndex);
+        try {
+           const response= await axios.delete(`http://localhost:3000/delete/${returnedIndex}/${movieIndex}`)
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+
 
     }
 
@@ -38,9 +47,9 @@ const Return = () => {
                 </thead>
 
                 <tbody>
-                    {returned.map((item, index) => (
-                        <tr key={index}>
-                            <th scope="row">{index + 1}</th>
+                    {returned.map((item, returnedIndex) => (
+                        <tr key={returnedIndex}>
+                            <th scope="row">{returnedIndex + 1}</th>
                             <td>{item.name}</td>
                             <td>
                                 <ul
@@ -89,10 +98,10 @@ const Return = () => {
                                         alignItems:"center"
                                     }}
                                 >
-                                    {item.movies.map(() => (
+                                    {item.movies.map((itm, movieIndex) => (
 
                                     <li  style={{ height: "30px" }}>
-                                        <button onClick={returnHandler}>returned</button>
+                                        <button onClick={() => returnHandler(item._id,itm._id)}>returned</button>
                                     </li>
                                     ))}
                                 </ul>
