@@ -101,7 +101,7 @@ export const Login = () => {
                     <div style={{display:'flex', alignItems:'center', gap:"1rem", flexDirection:"column", gap:"1rem", margin:"1rem"}}>
 
                     <Button  variant="success" type="submit" 
-            onClick={handleGoogleLogin}
+           
           >
             Login
           </Button>
