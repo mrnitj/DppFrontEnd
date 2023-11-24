@@ -9,7 +9,7 @@ const Delivary = () => {
     const movieRef = useRef(null);
     const daysRef = useRef(null);
     const priceRef = useRef(null);
-
+    
     const [days, setDays] = useState(1);
     const [price, setPrice] = useState(50);
     const [movies, setMovies] = useState([]);
@@ -32,7 +32,6 @@ const Delivary = () => {
         movieRef.current.value = "";
         daysRef.current.value = "";
     };
-
     const addFullDataHandler = async () => {
         const name = nameRef.current.value;
 
@@ -41,7 +40,6 @@ const Delivary = () => {
             movies: movies,
         };
         console.log("body------", body);
-
         try {
             const response = await axios.post("http://localhost:3000/addmovie", body);
 
@@ -50,7 +48,6 @@ const Delivary = () => {
             console.log(err);
         }
     };
-
     return (
         <>
             <h1>DELIVERY DETAILS</h1>
@@ -96,9 +93,41 @@ const Delivary = () => {
 
                 <label htmlFor="priceInput">Price</label>
                 <Form.Control id="priceInput" type="number" name="price" value={price} readOnly ref={priceRef} />
-                <div style={{ marginTop: "20px", paddingLeft: "40px",display:"flex", flexDirection:'column',padding:"20px 50px",  gap:'1rem' }} id="signInDiv">
-                    <button onClick={addMovieHandler} style={{border:"1px solid grey", padding:"0.5rem" ,borderRadius:"50px", fontWeight:"bold", backgroundColor:'transparent'}}>add movie</button>
-                    <button onClick={addFullDataHandler} style={{border:"1px solid grey", padding:"0.5rem", borderRadius:"50px", fontWeight:"bold", backgroundColor:'transparent'}}>submit</button>
+                <div
+                    style={{
+                        marginTop: "20px",
+                        paddingLeft: "40px",
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: "20px 50px",
+                        gap: "1rem",
+                    }}
+                    id="signInDiv"
+                >
+                    <button
+                        onClick={addMovieHandler}
+                        style={{
+                            border: "1px solid grey",
+                            padding: "0.5rem",
+                            borderRadius: "50px",
+                            fontWeight: "bold",
+                            backgroundColor: "transparent",
+                        }}
+                    >
+                        add movie
+                    </button>
+                    <button
+                        onClick={addFullDataHandler}
+                        style={{
+                            border: "1px solid grey",
+                            padding: "0.5rem",
+                            borderRadius: "50px",
+                            fontWeight: "bold",
+                            backgroundColor: "transparent",
+                        }}
+                    >
+                        submit
+                    </button>
                 </div>
             </div>
         </>
